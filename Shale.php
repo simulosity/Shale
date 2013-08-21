@@ -37,7 +37,7 @@ class Shale{
      */
     
     public function open($view, $id='', $class='', $html=''){
-        if(class_exists('Nog')){Nog::In();}
+        if(class_exists('Nog')){Nog::O();}
 
         if($this->cache_on){
             $this->cache_data[] = "O".$view;    
@@ -74,7 +74,7 @@ class Shale{
         }
         
 
-        if(class_exists('Nog')){Nog::Out();}
+        if(class_exists('Nog')){Nog::C();}
         
     }
     
@@ -86,7 +86,7 @@ class Shale{
     
     public function set($att, $value, $search=false){
         
-        if(class_exists('Nog')){Nog::In();}
+        if(class_exists('Nog')){Nog::O();}
         
         if($this->cache_on && $this->not_in_view){
             if($search){
@@ -102,7 +102,7 @@ class Shale{
             $this->search_str .= strip_tags($value).' ';
         }
 
-        if(class_exists('Nog')){Nog::Out();}
+        if(class_exists('Nog')){Nog::C();}
     }
     
     /*
@@ -113,13 +113,13 @@ class Shale{
      */
     
     public function gset($att, $value, $unique_id = false){
-        if(class_exists('Nog')){Nog::In();}
+        if(class_exists('Nog')){Nog::O();}
         
         if(!$unique_id && !in_array($unique_id, $this->global_roster)){
             $this->global_data[$att][] = $value;
         }
 
-        if(class_exists('Nog')){Nog::Out();}
+        if(class_exists('Nog')){Nog::C();}
     }
     
     /*
@@ -129,11 +129,11 @@ class Shale{
      */
     
     public function pset($att, $value){
-        if(class_exists('Nog')){Nog::In();}
+        if(class_exists('Nog')){Nog::O();}
 
         $this->parent_data[$att][] = $value;
         
-        if(class_exists('Nog')){Nog::Out();}
+        if(class_exists('Nog')){Nog::C();}
     }
     
     /*
@@ -143,11 +143,11 @@ class Shale{
     
     
     public function rset($att, $value){
-        if(class_exists('Nog')){Nog::In();}
+        if(class_exists('Nog')){Nog::O();}
 
         $this->return_data[$att][] = $value;
         
-        if(class_exists('Nog')){Nog::Out();}
+        if(class_exists('Nog')){Nog::C();}
     }
 
     
@@ -158,7 +158,7 @@ class Shale{
      */
     
     public function close($view, $note=''){
-        if(class_exists('Nog')){Nog::In();}
+        if(class_exists('Nog')){Nog::O();}
         
         if($this->cache_on){
             $this->cache_data[] = "C".$view;    
@@ -218,7 +218,7 @@ class Shale{
         $ret = $this->return_data;
         $this->return_data = array();
         
-        if(class_exists('Nog')){Nog::Out();}
+        if(class_exists('Nog')){Nog::C();}
         
         return $ret;
         
@@ -226,24 +226,24 @@ class Shale{
     
     
     public function place($view, $id='', $class='', $html=''){
-        if(class_exists('Nog')){Nog::In();}
+        if(class_exists('Nog')){Nog::O();}
         $this->open($view, $id, $class, $html);
         $this->close($view);
-        if(class_exists('Nog')){Nog::Out();}
+        if(class_exists('Nog')){Nog::C();}
     }
     
     public function cache($name, $time=21600){
-        if(class_exists('Nog')){Nog::In();}
+        if(class_exists('Nog')){Nog::O();}
         if($time < 60){
             $time = $time * 3600;
         }
         
         
-        if(class_exists('Nog')){Nog::Out();}
+        if(class_exists('Nog')){Nog::C();}
     }
      
     public function log(){
-        if(class_exists('Nog')){Nog::In();}
+        if(class_exists('Nog')){Nog::O();}
         
         if(!defined('PAGE')){
 
@@ -265,12 +265,12 @@ class Shale{
 
         }
         
-        if(class_exists('Nog')){Nog::Out();}
+        if(class_exists('Nog')){Nog::C();}
     }
     
     
     public function back($not = '', $redirect = false){
-        if(class_exists('Nog')){Nog::In();}
+        if(class_exists('Nog')){Nog::O();}
 
         $history = explode('|', $this->CI->session->userdata('history'));
 
@@ -283,19 +283,19 @@ class Shale{
                 if($redirect){
                     redirect('/'.$entry, 'refresh');
                 }else{
-                    if(class_exists('Nog')){Nog::Out();}
+                    if(class_exists('Nog')){Nog::C();}
                     return $entry;
                 }
             } 
         }
         
-        if(class_exists('Nog')){Nog::Out();}
+        if(class_exists('Nog')){Nog::C();}
     }
     
         
     
     public function get($key, $sep = "", $pre="", $suf=""){
-        if(class_exists('Nog')){Nog::In();}
+        if(class_exists('Nog')){Nog::O();}
         
         $str = '';
         $var = $this->cur_data;
@@ -315,11 +315,11 @@ class Shale{
             }
             
             $str .=  $suf;
-            if(class_exists('Nog')){Nog::Out();}
+            if(class_exists('Nog')){Nog::C();}
             return $str;
                 
         }else{
-            if(class_exists('Nog')){Nog::Out();}
+            if(class_exists('Nog')){Nog::C();}
             return '';
         }
         
@@ -328,7 +328,7 @@ class Shale{
     
     public function att($include = ''){
         
-        if(class_exists('Nog')){Nog::In();}
+        if(class_exists('Nog')){Nog::O();}
               
         $str =   $this->get('id', '', " id='", "'");
         $str .=  $this->get('class', ' ', " class='", "'");
@@ -347,7 +347,7 @@ class Shale{
 
         $str .=  $this->get('att', ' ', ' ', '');
 
-        if(class_exists('Nog')){Nog::Out();}
+        if(class_exists('Nog')){Nog::C();}
         
         return $str;
         
